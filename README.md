@@ -14,3 +14,4 @@ git config --global user.email thesombats@gmail.com
 git clone https://github.com/thesombats/pythonanywhere
 mv pythonanywhere mysite
 ```
+จัดเก็บเว็ปไซต์  https://jaopang.pythonanywhere.com/
