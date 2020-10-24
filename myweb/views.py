@@ -1,23 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserCreationForm
 
-from .models import Question, Choice
 
-# Create your views here.
 def index(req):
-	return render(req, 'myweb/index.html')
+	return render(req, 'myweb/index.html' )
 
-def united(req):
-	return render(req, 'myweb/united.html')
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            raw_password = form.cleaned_data['password1']
+            user = authenticate(request,username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'myweb/register.html', {'form': form})
 
-def detail(request, question_id):
-    question = Question.objects.get(id=question_id)
-    choices = Choice.objects.filter(question=question)
-    return render(request, 'myweb/detail.html', { 'question': question, 'choices': choices })
+def post(req):
+    return render(req, 'myweb/post.html')
 
-def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
-
-def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
+def aboutcow(req):
+    return render(req, 'myweb/aboutcow.html')
+    

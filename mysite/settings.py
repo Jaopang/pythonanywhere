@@ -25,8 +25,13 @@ SECRET_KEY = 'l#d)=k3^2f9^39&__hb26y@cf+p95jv#g=p67-5yf9a1gi-$1+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'jaopang.pythonanywhere.com']
+ALLOWED_HOSTS = [u'localhost',u'127.0.0.1',u'jaopang.pythonanywhere.com']
 
+STATICFILES_DIRS = [
+
+    os.path.join(BASE_DIR, "static"),
+
+]
 
 # Application definition
 
@@ -51,6 +56,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'login'
 
 TEMPLATES = [
     {

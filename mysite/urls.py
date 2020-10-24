@@ -1,11 +1,15 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path,include
 from myweb import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.index),
-    #path('polls/', include('polls.urls')),
-    path('myweb/', include('myweb.urls')),
-    path('united', views.united),
     path('admin/', admin.site.urls),
+    path('', include('myweb.urls')),
+    path('register', views.signup),
+    path('post', views.post),
+    path('aboutcow', views.aboutcow,),
 ]
+
+urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
