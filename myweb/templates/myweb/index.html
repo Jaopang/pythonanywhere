@@ -39,7 +39,7 @@
       <a class="navbar-brand" href="#">OxesTrading InSurin</a>
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="/index">หน้าหลัก <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/">หน้าหลัก <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/aboutcow">เกี่ยวกับวัว</a>
@@ -61,19 +61,20 @@
     </div>
   </div>
 </nav>
-    
-    <!--Title-->
-    <div class="container">
+<div class="container">
     <div class="card border-0 shadow my-5">
-      <div class="card-body p-5">
-        <h1>วัว1</h1>
-        <p> ....</p>
-        <br>
-        <h2>วัว2</h2>
-        <p>....................</p>
-        <br>
-        <h3>วัว3</h3>
-        <p>...................</p>
+      <div class="card-body p-5"> 
+        <h4 style="font-Size:50Px;" align = 'center'><b>ซื้อขายวัว จังหวัดสุรินทร์ </b><br>(OxesTrading InSurin)  </h4><br>
+        {% for a in Destinations %}
+        <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+            <img src="https://as2.ftcdn.net/jpg/02/30/60/51/500_F_230605120_L3cy2MAc4srVoI9hDdaoS9CNhQJDivYt.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:80px">
+            <span class="w3-right w3-opacity" style="font-Size:35Px;" >{{ a.name }}</span>
+            <hr class="w3-clear">
+            <img src="{{ a.img.url }}" style="width:100%" class="w3-margin-bottom">
+            <p style="font-Size:25Px;">ราคา:  {{ a.price }} ฿ </p>
+            <p style="font-Size:25Px;">ข้อมูล:  {{a.desc}}</p>
+            </div>
+        {% endfor %}
       </div>
     </div>
     </div>
