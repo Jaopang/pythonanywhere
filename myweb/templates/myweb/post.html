@@ -78,11 +78,14 @@
             <div class="card-body p-5">
               <h2 style="font-size:50px;" Color="black" align = 'center' >โพสต์ขายวัว</h2>
               {% block content %}
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" />
-        </form>
+              <form method="POST">
+                  {% csrf_token %}
+                  Name:<input type="text" name="name">
+                  Img:<input type="text" name="img">
+                  Price:<input type="text" name="price">
+                  Desc:<textarea name="desc" ></textarea>
+                  <button type="submit" >submit</button>
+              </form>
             {% endblock %} 
                 </div>
               </div>

@@ -10,13 +10,13 @@ class Question(models.Model):
 
 class Destination(models.Model):
     name = models.CharField(max_length=100)
-    img = models.ImageField(upload_to='pics')
+    img = models.CharField(max_length=300)
     desc = models.TextField()
     price = models.IntegerField(default=0)
-    offer = models.BooleanField(default=False)
+    #offer = models.BooleanField(default=False)
     
     def __str__(self):
-        return f'{self.name} - {self.img} - {self.price} - {self.offer} '
+        return f'{self.name} - {self.img} - {self.price} '
 
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)

@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -32,13 +33,18 @@ def index(req):
 
 def post(request):
     if request.method == 'POST':
-        form = Destinationform(request.POST)
+        name = request.POST.get('name')
+        img = request.POST.get('img')
+        price = request.POST.get('price')
+        desc = request.POST.get('desc')
+        form = Destination(name=name, img=img, desc=desc, price=price)
+        form.save()
+        return redirect('index')
+    return render(request, 'myweb/post.html')
 
-        if form.is_valid():
-            a = form.save()
-            a.save()
-            return redirect("/index")
-    else:
-        form = Destinationform()
-        context = {'form': form}
-        return render(request, 'myweb/post.html', context)
+def posts(req):
+    Destinations = Destination.objects.all()
+    ins = {
+        'Destinations' : Destinations
+        }
+    return render(req, 'myweb/post.html', ins)
